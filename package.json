@@ -5,6 +5,7 @@
   "repository": "git@github.com:geclos/node-chat.git",
   "main": "src/index.js",
   "dependencies": {
+    "amqplib": "^0.5.2",
     "hapi": "^17.5.1",
     "inert": "^5.1.0",
     "socket.io": "^2.1.1"

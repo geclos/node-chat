@@ -1,6 +1,8 @@
 const Hapi = require('hapi')
 const Path = require('path')
-const routes = require('./routes')
+const middlewares = require('./middlewares')
+const exchanges = require('./exchanges')
+const sockets = require('./sockets')
 
 const server = new Hapi.Server({
   port: 3000,
@@ -14,22 +16,18 @@ const server = new Hapi.Server({
 
 const init = async () => {
   await server.register([
-    require('inert'),
-    routes
+    middlewares,
+    exchanges,
+    sockets
   ])
-
-  const io = require('socket.io')(server.listener)
-  io.on('connection', socket => {
-    console.log('user connected')
-
-    socket.on('chat message', msg => io.emit('chat message', msg))
-    socket.on('disconnect', () => console.log('user disconnected'))
-  })
 
   server.start()
   console.log(`server listening on port: ${server.info.port}`)
 }
 
-// TODO: error handling
+process.on('unhandledRejection', err => {
+  console.log(err)
+  process.exit(1)
+})
 
 init()

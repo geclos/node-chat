@@ -1,5 +1,5 @@
 exports.plugin = {
-  name: 'routes',
+  name: 'conversationIncomingExchange',
   register: (server, options) => {
     // TODO:
   }
