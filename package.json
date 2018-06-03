@@ -1,0 +1,19 @@
+{
+  "name": "node-chat",
+  "version": "1.0.0",
+  "description": "Node chat",
+  "repository": "git@github.com:geclos/node-chat.git",
+  "main": "src/index.js",
+  "dependencies": {
+    "hapi": "^17.5.1",
+    "inert": "^5.1.0",
+    "socket.io": "^2.1.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "start": "node src/index.js",
+    "test": "test"
+  },
+  "author": "Gerard Clos <clos.gerard@gmail.com>",
+  "license": "ISC"
+}
