@@ -1,6 +1,5 @@
 const conversationIncomingExchange = require('./conversationIncomingExchange')
 const conversationOutgoingExchange = require('./conversationOutgoingExchange')
-const userExchange = require('./userExchange')
 
 exports.plugin = {
   name: 'exchanges',

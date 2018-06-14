@@ -1,21 +1,31 @@
-const MessageInteractor = require('../interactors/MessageInteractor')
+const UserExchange = require('./UserExchange')
 
 exports.plugin = {
   name: 'sockets',
-  register: (server, options) => {
-    const broker = server.app.broker
-    const messageInteractor = MessageInteractor(server)
-    const io = require('socket.io')(server.listener)
+  register: async (server, options) => {
+    const channel = server.app.channel
+    const userExchange = await UserExchange(server)
+    const io = require('socket.io')(server.listener, { path: '/hapi' })
+
+    channel.consume('conversationIncoming', msg => {
+      channel.publish(userExchange.name(), '', msg.content)
+    })
 
     io.on('connection', async socket => {
-      socket.on('message', messageInteractor.register)
-
-      const channel = await broker.createChannel()
-      channel.consume('conversationIncoming', msg => {
-        socket.emit(msg.content.toString())
+      socket.on('message', msg => {
+        if (!msg) return
+        channel.publish('conversationOutgoing', '', new Buffer(msg))
       })
 
-      socket.on('disconnect', () => console.log('user disconnected'))
+      const q = await userExchange.registerUser(socket.id)
+      channel.consume(q.queue, msg => {
+        if (!msg) return
+        socket.emit('chat message', msg.content.toString())
+      })
+
+      socket.on('disconnect', () => {
+        userExchange.dropUser(socket.id)
+      })
     })
   }
 }
