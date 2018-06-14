@@ -7,8 +7,7 @@ exports.plugin = {
   register: async (server, options) => {
     await server.register([
       conversationOutgoingExchange,
-      conversationIncomingExchange,
-      userExchange
+      conversationIncomingExchange
     ])
   }
 }
