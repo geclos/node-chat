@@ -10,10 +10,11 @@ Goals:
 - NodeJS API.
 - Server-client connection with websockets.
 - Message queuing and distribution with rabbitMQ.
-- Containarize with docker and store it in ECS.
-- Serve it with EC2, begind an ALB with auto-scaling.
+- containerization with docker and store it in ECS.
+- Serve everything with EC2, behind an ALB with auto-scaling.
+- Multi A-Z support.
 
-### Current status
+## Current status
 Currently the API broadcasts to every node connected to it but the basic building blocks in which I was more interested in are already built.
 
 I followed design principles detailed in [this article](https://smartym.pro/blog/mobile-messaging-app-development-developing-architecture-for-a-chat-application/).
@@ -26,3 +27,9 @@ to all temporary queues but it would be easy to setup a temporary register of us
 
 Image of a message "traveling" through the system:
 ![](https://smartym.pro/wp-content/uploads/2017/12/rabbitmq-2.png)
+
+## FAQ
+- **Isn't this totally overkill for a personal project?**
+Yes! As I've said, it's just an excuse to refresh my DevOps skills, I do not pretend to keep it running (much less without free-tier EC2 instance options available).
+- **Can I steal ideas/code from this?**
+Be my guest.
