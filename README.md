@@ -29,7 +29,10 @@ Image of a message "traveling" through the system:
 ![](https://smartym.pro/wp-content/uploads/2017/12/rabbitmq-2.png)
 
 ## FAQ
-- **Isn't this totally overkill for a personal project?**
+**Isn't this totally overkill for a personal project?**
+
 Yes! As I've said, it's just an excuse to refresh my DevOps skills, I do not pretend to keep it running (much less without free-tier EC2 instance options available).
-- **Can I steal ideas/code from this?**
+
+**Can I steal ideas/code from this?**
+
 Be my guest.
