@@ -20,7 +20,7 @@ Currently the API broadcasts to every node connected to it but the basic buildin
 I followed design principles detailed in [this article](https://smartym.pro/blog/mobile-messaging-app-development-developing-architecture-for-a-chat-application/).
 
 Basically, there's two permanent queues along which all messages flow through. This allows the system to not block IO and perform slower tasks (e.g: user authentication, permission checking, database querying, etc...) between queues.
-Eventually, both queues and the worker could be separated in independent servers and the worker escalated horizontally.
+Eventually, I want to separate both queues and the worker in independent services so that I could scale all of them horizontally to meet demand.
 
 Then there's N temporary queues for N users connected, all managed through a `UserExchange`. These temporary queues are dropped as soon as the user disconnects. As I've said, right now all messages are broadcasted
 to all temporary queues but it would be easy to setup a temporary register of users with unique identifiers, correlate temporary queues with such identifiers and then send private messages between a subset of N known users.
